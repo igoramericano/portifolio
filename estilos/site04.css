@@ -1,0 +1,228 @@
+@charset "UTF-8";
+
+/*fontes*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/*fontes*/
+
+@font-face {
+    font-family: 'Android';
+    src: url('../fontes/Android.otf') format('truetype');
+    font-weight: normal;
+}
+
+/*pasta com ./ é a pasta atual
+pasta com   ../ é a pasta anterior */
+
+:root { /*toda variável em CSS começa com --*/
+    --cor0: #c5ebd6;
+    --cor1: #83e1ad;
+    --cor2: #3ddc84;
+    --cor3: #2fa866;
+    --cor4: #1ac537;
+    --cor5: #063d1e;
+
+    --fonte-padrao: 'Arial', Verdana, Helvetica, sans-serif;
+    --fonte-destaque: 'Bebas Neue', Cursive, sans-serif;
+    --fonte-android: 'Android', Cursive;
+}
+/*usa o * para mexer nas config GLOBAIS DE (p, h1-h6)*/
+
+
+/*então a anta aqui ficou 1 ano com o site errado porque o comando max-width 1200 tava ali, era só trocar pra*/
+* {
+    margin: 0px;
+    padding: 0px;
+    
+}
+
+div.video {
+    background-color: var(--cor5);
+    margin: 0px -20px 30px -20px;
+    padding: 20px;
+    padding-bottom: 60%;
+    position: relative;
+    
+}
+
+div.video > iframe {
+    position: absolute;
+    padding-bottom: 5px;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+   
+}
+
+
+main img {
+    width: 100%;
+}
+
+main img.pequena {
+    max-width: 350px;
+    margin: auto;
+    display: block;
+}
+
+main {
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+    background-color: var(--cor0);
+    padding: 20px;
+    box-shadow: 0px 0px 10px #00000050;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+main h1 {
+    color: var(--cor5);
+    font-family: var(--fonte-android);
+    background-image: linear-gradient(to right, var(--cor0), var(--cor5));
+   
+   
+}
+
+main h2 {
+    color: var(--cor4);
+    font-family: var(--fonte-android);
+    font-size: 1.8em;
+    padding: 10px;
+    border: 5px solid var(--cor5);
+    background-image: linear-gradient(to right, var(--cor5), transparent);
+}
+
+main p {
+    background-color: var(--cor0);
+    font-family: var(--fonte-padrao);
+    margin: 15px 0px;
+    text-align: justify;
+    text-indent: 15px;
+    font-size: 1.1em;
+    line-height: 2em;
+    
+}
+
+main a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--cor5);
+    background-color: var(--cor1);
+    padding: 2px 4px;
+}
+
+main strong {
+    color: var(--cor5);
+    background-color: var(--cor3);
+    font-weight: bold;
+    padding: 1px;
+
+
+}
+
+main a:hover {
+    text-decoration: underline;
+    color: var(--cor5);
+}
+
+body {
+    background-color: beige;
+    font-family: var(--fonte-padrao);
+    
+    margin: auto;
+    
+}
+
+
+
+header{
+    background-image: linear-gradient(to bottom, var(--cor4), var(--cor2));
+    background-color: var(--cor5);
+    min-height: 150px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+header > h1 {
+    color: #fff;
+    font-family: var(--fonte-destaque);
+    font-size: 3em;
+    margin-bottom: 20px;
+    
+}
+
+header > p {
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-shadow: 2px 2px 2px #000;
+
+}
+
+nav {
+    background-color: var(--cor5);
+    text-align: center;
+    padding: 10px;
+    background-image: linear-gradient(to bottom, var(--cor2), var(--cor4));
+    box-shadow: 1px 1px 5px #00000050;
+
+}
+
+nav > a {
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition-duration: 0.2s;
+}
+
+nav > a:hover {
+    background-color: var(--cor5);
+    color: var(--cor4);
+}
+
+aside {
+    background-color: var(--cor2);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+aside > h3 {
+    background-color: var(--cor0);
+    font-family: var(--fonte-destaque);
+    font-size: 3em;
+    font-family: var(--fonte-android);
+    color: var(--cor5);
+    padding: 10px;
+    margin: 0; /* Remove qualquer margem */
+    border: 5px solid var(--cor0);
+
+    /*trabalhar só com padding e margin de preferencia pra não se atrapalhar desgraçaaaaaaaaaaaaaaa*/
+}
+
+aside > ul {
+    list-style-type: '\2714'; /*código do emoji check*/
+    list-style-position: inside;
+    columns: 2;
+}
+/*para dividr alguma lista ul visualmente, se usa a tag 'columns'*/
+
+a.external::after {
+    content: " \1F517"; /*código do emoji de link*/
+    color: var(--cor5);
+}
+
+footer {
+    background-color: var(--cor5);
+    color: #fff;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 12px;
+}

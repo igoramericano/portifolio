@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/* verde: #49a09d, lilás: #5c2c82 */
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+body, html {
+    background-color: #5c2c82;
+    height: 100%;
+    width: 100%;
+}
+
+
+main {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+div.campo > label {
+    display: inline-block;
+    font-size: 1em;
+    
+}
+section#login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.450);
+
+    transition: width 0.3s, height 0.3s;
+    transition-timing-function: ease;
+}
+
+section#login > div#imagem {
+    display: block;
+    background: #5c2c82 url(../imagens/pattern.png) no-repeat;
+    background-size: cover;
+    background-position: left bottom;
+    width: 100%;
+    min-height: 150px;
+    aspect-ratio: 3 / 1;
+}
+
+section#login > div#formulario {
+    display: block;
+    padding: 10px;
+}
+
+div#formulario > h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+div#formulario > p {
+    font-size: 0.8em;
+}
+
+div#submit input[type="submit"] {
+    display: block;
+    font-size: 1em;
+    width: 100%;
+    height: 40px;
+    background-color: #49a09d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    transition-timing-function: ease;
+}
+
+div#submit input[type="submit"]:hover {
+    background-color: #6ac4c1;
+}
+
+div#submit a {
+    display: block;
+    margin: 0px;
+
+    text-align: center;
+    font-size: 1em;
+    width: 100%;
+    height: 40px;
+    background-color: #49a09d;
+    border: olivedrab 1px solid;
+    border-radius: 5px;
+    text-decoration: none;
+
+}
+
+div#submit a:hover {
+    background-color: #6ac4c1;
+}
