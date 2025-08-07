@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Igor Americano | Portfólio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="estilos/index.css">
-    </head>
+</head>
 <body>
-
     <header>
         <nav>
             <h1>Igor Americano</h1>
             <ul>
-                <li><a href="#sobre">Sobre Mim</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#sobre" class="btn-nav"><span></span><span></span><span></span><span></span>Sobre Mim</a></li>
+                <li><a href="#habilidades" class="btn-nav"><span></span><span></span><span></span><span></span>Habilidades</a></li>
+                <li><a href="#projetos" class="btn-nav"><span></span><span></span><span></span><span></span>Projetos</a></li>
+                <li><a href="#contato" class="btn-nav"><span></span><span></span><span></span><span></span>Contato</a></li>
             </ul>
         </nav>
     </header>
@@ -27,30 +28,61 @@
 
         <section id="sobre">
             <h3>Sobre Mim</h3>
-            <div class="sobre-conteudo">
-                <div class="texto-principal">
-                    <p>Olá, sou Igor Americano e trabalho como desenvolvedor, priorizando o back-end e a segurança de sistemas. Dedico minhas semanas, de segunda a sexta, a um aprendizado constante para aprimorar minhas habilidades técnicas. Atualmente, estou me aprofundando no desenvolvimento web através dos materiais do CursoEmVídeo e do GitHub do professor Gustavo Guanabara.</p>
-
-                    <p>Atualmente, estou matriculado no curso de Programação Full Stack com Inteligência Artificial da Infinity School, com duração de 13 meses e certificação internacional. Essa formação complementa meus estudos atuais e amplia minha visão sobre o desenvolvimento moderno, incluindo práticas voltadas à IA, back-end, front-end e integração de tecnologias de ponta.</p>
-
-                    <p>Tenho inglês fluente, adquirido em dois anos de estudo, o que me permite estudar documentação estrangeira, acompanhar tutoriais avançados e interagir com times internacionais. Adapto-me facilmente a softwares variados, o que me ajuda a aprender novas ferramentas e diferentes ambientes de desenvolvimento.</p>
-
-                    <p>Recentemente, completei mais de 120 horas de treinamento em desenvolvimento web, com ênfase em estrutura semântica, responsividade e métodos eficientes de organização. Progredi também em JavaScript, praticando lógica, manipulação do DOM e conceitos básicos voltados para o front-end, também 40 horas adicionais de Inteligência Artificial para otimizar minha rotina.</p>
-
-                    <p>Agora, estou concentrado em melhorar minha lógica de programação, criando um alicerce forte para avançar com desenvoltura nas próximas fases do meu caminho como desenvolvedor web.</p>
+            <div class="sobre-tópicos">
+                <div class="tópico-item">
+                    **Formação->>Cursando Programação Full Stack com IA na Infinity School.
                 </div>
-
-            <div class="texto-complementar">
-                <p>Cada parte da minha trajetória mostra meu empenho em aprimorar constantemente minhas habilidades e me preparar para os desafios reais encontrados no mundo da tecnologia.</p>
-
-                <p>Além do conhecimento técnico, desenvolvi competências essenciais para o setor de tecnologia, como organização de projetos, precisão e conhecimento de ferramentas digitais — elementos que contribuem para gerar códigos claros e que funcionam.</p>
-
-                <p>Tenho facilidade para aprender sozinho, sou bastante flexível e possuo uma forma de pensar focada em solucionar problemas, características cruciais em equipes ágeis e dinâmicas.</p>
-
-                <p>Minha curiosidade vai além do código: gosto de compreender como os sistemas funcionam, melhorar processos e criar soluções viáveis que combinem qualidade técnica e facilidade de uso.</p>
+                <div class="tópico-item">
+                    **Idiomas->> Inglês (fluente). Português (nativo). Espanhool (básico).
+                </div>
+                <div class="tópico-item">
+                    **Foco->> Desenvolvedor back-end e segurança de sistemas.
+                </div>
+                <div class="tópico-item">
+                    **Certificações->> Mais de 120 horas em desenvolvimento web (estrutura semântica, responsividade) e 40 horas em Inteligência Artificial.
+                </div>
+                <div class="tópico-item">
+                    **Habilidades Pessoais ->> Pensamento focado em soluções, autodidata, flexibilidade e organização.
+                </div>
             </div>
-
-
+        </section>
+        
+        <section id="habilidades">
+            <h3>Minhas Habilidades</h3>
+            <div class="grid-habilidades">
+                <div class="habilidade-item">
+                    <i class="fab fa-html5"></i>
+                    <h4>HTML5</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <h4>CSS3</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fab fa-js-square"></i>
+                    <h4>JavaScript</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fas fa-database"></i>
+                    <h4>Banco de Dados</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fas fa-lock"></i>
+                    <h4>Segurança</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fab fa-git-alt"></i>
+                    <h4>Git</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fab fa-python"></i>
+                    <h4>Python</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fab fa-node-js"></i>
+                    <h4>Node.js</h4>
+                </div>
+            </div>
         </section>
 
         <section id="projetos">
@@ -80,7 +112,7 @@
                     <p>História do Android OS e de seu mascote</p>
                     <a href="site04.html" target="_blank">Ver Projeto</a>
                 </div>
-                </div>
+            </div>
         </section>
 
         <section id="contato">
@@ -91,7 +123,7 @@
                 <a href="https://instagram.com/igoramericano" target="_blank">Instagram</a>
                 <a href="https://wa.me/5571981628334?text=Olá,%20vi%20seu%20contato%20e%20gostaria%20de%20saber%20mais!" target="_blank">Whatsapp</a>
             </div>
-            </section>
+        </section>
     </main>
 
     <footer>
