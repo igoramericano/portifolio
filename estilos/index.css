@@ -24,6 +24,7 @@ body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
     line-height: 1.6;
+    margin: 10px;
 }
 
 h1, h2, h3, h4 {
@@ -58,7 +59,7 @@ a:hover {
 
 header {
     background: var(--cor-card);
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
@@ -67,6 +68,7 @@ header {
 
 nav {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: relative;
@@ -137,6 +139,7 @@ nav h1 {
         background-color: transparent;
         padding: 0;
         box-shadow: none;
+        align-items: center;
     }
 
     .mobile-menu li {
@@ -161,7 +164,7 @@ nav h1 {
         letter-spacing: 4px;
         overflow: hidden;
         transition: 0.5s;
-        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+
     }
 
     .btn-nav:hover {
@@ -236,11 +239,23 @@ section {
 .habilidade-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
     border: 1px solid var(--cor-primaria);
-    animation: pulse-border 1s ease-in-out infinite alternate;
+    animation: pulse-border-invert 1s ease-in-out infinite alternate;
+}
+
+/* Adicionamos este seletor para mudar a cor do ícone */
+.habilidade-item:hover i {
+    color: var(--cor-fundo); /* O ícone fica branco */
 }
 
 @keyframes pulse-border {
+    0% { border-width: 1px; }
+    100% { border-width: 3px; }
+}
+
+@keyframes pulse-border-invert {
     0% { border-width: 1px; }
     100% { border-width: 3px; }
 }
@@ -249,6 +264,7 @@ section {
     font-size: 3rem;
     color: var(--cor-primaria);
     margin-bottom: 1rem;
+    transition: color 0.3s ease; /* Adiciona uma transição suave para a cor do ícone */
 }
 
 .habilidade-item h4 {
