@@ -11,7 +11,7 @@
     <header>
         <nav>
             <h1>Igor Americano</h1>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#habilidades" class="btn-nav">Habilidades</a></li>
                 <li><a href="#sobre" class="btn-nav">Sobre Mim</a></li>
                 <li><a href="#projetos" class="btn-nav">Projetos</a></li>
@@ -126,7 +126,14 @@
             </div>
         </section>
     </main>
+    <script>
+         const hamburguerIcon = document.querySelector('.hamburguer-icon');
+    const mobileMenu = document.querySelector('.mobile-menu');
 
+    hamburguerIcon.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+    });
+    </script>
     <footer>
         <p>&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.</p>
     </footer>
