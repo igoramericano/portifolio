@@ -23,6 +23,7 @@
             display: grid;
             grid-template-columns: 1fr;
             height: 100vh;
+            overflow: hidden; /* Evita a rolagem do corpo principal */
         }
 
         .sidebar {
@@ -97,25 +98,25 @@
         }
 
         .main-content {
-            padding: 20px 10px 70px 10px;
+            padding: 20px 10px 70px 10px; /* Adiciona padding no fundo para não cobrir conteúdo */
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
+            height: calc(100vh - 60px); /* Garante que o conteúdo principal não fique sob a barra de navegação inferior */
         }
         
         #home-content, #library-content {
             display: flex;
             flex-direction: column;
             width: 100%;
-            height: 100%;
             gap: 20px;
         }
 
         @media (min-width: 769px) {
             body {
                 grid-template-columns: 250px 1fr;
+                height: 100vh;
+                overflow: hidden;
             }
             .sidebar {
                 position: static;
@@ -125,10 +126,12 @@
                 justify-content: flex-start;
                 box-shadow: none;
                 border-radius: 0;
+                padding: 15px;
             }
             .sidebar-title {
                 display: block;
                 margin-top: 20px;
+                padding: 0 10px;
             }
             .main-logo {
                 display: none !important;
@@ -140,17 +143,17 @@
             }
             .main-content {
                 padding: 40px;
-                padding-bottom: 40px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 gap: 20px;
+                height: 100vh;
+                overflow-y: auto;
             }
             #home-content, #library-content {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                height: 100%;
                 max-width: 600px;
                 gap: 20px;
             }
@@ -166,6 +169,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 100%;
             padding: 50px;
             width: 100%;
         }
@@ -409,7 +414,8 @@
     
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>
-        const API_URL = 'http://127.0.0.1:3000/callback';
+        // CORREÇÃO 1: A URL da API deve ser a base do seu servidor, sem caminhos extras.
+        const API_URL = 'http://127.0.0.1:3000'; 
         const loginContainer = document.getElementById('login-container');
         const homeNav = document.getElementById('home-nav');
         const libraryNav = document.getElementById('library-nav');
@@ -497,6 +503,7 @@
         }
         async function transferPlayback(device_id) {
             try {
+                // CORREÇÃO 2: URL da API do Spotify corrigida para o endpoint de transferência de playback.
                 await fetch('https://api.spotify.com/v1/search?q=', {
                     method: 'PUT',
                     body: JSON.stringify({
@@ -567,14 +574,14 @@
                 if (response.status === 401) {
                     if (retry) {
                         alert('Sessão expirada. Por favor, faça login novamente.');
-                        window.location = '/login';
+                        window.location.href = '/';
                         return;
                     }
                     console.log('Token expirado durante a busca. Tentando renovar...');
                     const refreshToken = localStorage.getItem('spotify_refresh_token');
                     if (!refreshToken) {
                         alert('Sessão expirada. Por favor, faça login novamente.');
-                        window.location = '/login';
+                        window.location.href = '/';
                         return;
                     }
                     const refreshResponse = await fetch(`${API_URL}/refresh_token?refresh_token=${refreshToken}`);
@@ -609,7 +616,7 @@
                 if (!response.ok) {
                      if (response.status === 401) {
                         alert('Sessão expirada. Por favor, faça login novamente.');
-                        window.location = '/login';
+                        window.location.href = '/';
                         return;
                     }
                     throw new Error(`Erro ao buscar músicas da biblioteca: ${response.statusText}`);
@@ -632,11 +639,12 @@
                 return;
             }
             tracks.forEach(track => {
+                if (!track) return; // Adiciona uma verificação para evitar erros se uma música for nula
                 const listItem = document.createElement('li');
                 listItem.classList.add('results-list-item');
                 listItem.dataset.uri = track.uri;
                 listItem.innerHTML = `
-                    <img src="${track.album.images[2].url}" alt="Capa do Álbum">
+                    <img src="${track.album.images.length > 2 ? track.album.images[2].url : 'https://via.placeholder.com/50'}" alt="Capa do Álbum">
                     <div class="song-info">
                         <div class="title">${track.name}</div>
                         <div class="artist">${track.artists.map(artist => artist.name).join(', ')}</div>
@@ -659,7 +667,8 @@
                                 'Authorization': `Bearer ${accessToken}`
                             },
                         });
-                        transferPlayback(deviceId);
+                        // CORREÇÃO 3: Chamada redundante removida. O endpoint /play-track já cuida disso.
+                        // transferPlayback(deviceId); 
                     } catch (error) {
                         console.error('Erro ao tentar tocar a música:', error);
                         alert('Não foi possível iniciar a reprodução. Verifique se sua conta é Premium e se o aplicativo do Spotify está aberto.');
@@ -722,6 +731,7 @@
                         const refreshToken = localStorage.getItem('spotify_refresh_token');
                         const response = await fetch(`${API_URL}/refresh_token?refresh_token=${refreshToken}`);
                         const data = await response.json();
+                        if (!response.ok || data.error) throw new Error(data.error || 'Erro ao renovar token');
                         accessToken = data.access_token;
                         localStorage.setItem('spotify_access_token', accessToken);
                         localStorage.setItem('expires_at', Date.now() + data.expires_in * 1000);
@@ -730,6 +740,7 @@
                         console.error('Erro ao renovar token:', error);
                         accessToken = null;
                         localStorage.clear();
+                        window.location.href = '/'; // Redireciona para a página de login se a renovação falhar
                     }
                 }
             }
