@@ -7,5 +7,27 @@
     "express": "^5.1.0",
     "node-fetch": "^3.3.2",
     "querystring": "^0.2.1"
+  },
+  "name": "portifolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igoramericano/portifolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/igoramericano/portifolio/issues"
+  },
+  "homepage": "https://github.com/igoramericano/portifolio#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }

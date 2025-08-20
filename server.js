@@ -6,8 +6,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const CLIENT_ID = '7a36ab2fa1e149cebb0a752a65de4782';
-const CLIENT_SECRET = '5e0fbc0b04174b46b55eb411c2ecb018';
-const REDIRECT_URI = 'https://projeto-spotify-three.vercel.app/callback'; // CORRIGIDO
+const CLIENT_SECRET = '2f793f56fdf7495cbef715c31c76d1a3';
+const REDIRECT_URI = 'http://127.0.0.1:3000/callback'; // CORRIGIDO
 const stateKey = 'spotify_auth_state';
 
 const app = express();
@@ -233,4 +233,7 @@ app.put('/add-to-library', async (req, res) => {
     }
 });
 
-module.exports = app;
+app.listen(port, () => {
+    console.log(`Servidor Spotify iniciado com sucesso na porta ${port}`);
+    console.log(`Acesse http://127.0.0.1:${port}/login para começar.`);
+});
