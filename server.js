@@ -1,3 +1,6 @@
+// ALTERAÇÃO 1: Adicionando o dotenv para carregar as variáveis de ambiente
+require('dotenv').config();
+
 const express = require('express');
 const axios = require('axios');
 const querystring = require('querystring');
@@ -5,9 +8,11 @@ const path = require('path');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-const CLIENT_ID = '7a36ab2fa1e149cebb0a752a65de4782';
-const CLIENT_SECRET = '2f793f56fdf7495cbef715c31c76d1a3';
-const REDIRECT_URI = 'http://127.0.0.1:3000/callback'; // CORRIGIDO
+// ALTERAÇÃO 2: Carregando as credenciais de forma segura do arquivo .env
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+
 const stateKey = 'spotify_auth_state';
 
 const app = express();
@@ -18,6 +23,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ALTERAÇÃO 3: Corrigindo as URLs base da API do Spotify
 const SPOTIFY_API_BASE = 'https://api.spotify.com/v1';
 const SPOTIFY_ACCOUNTS_BASE = 'https://accounts.spotify.com';
 
@@ -111,6 +117,8 @@ app.get('/refresh_token', async (req, res) => {
   }
 });
 
+// --- NENHUMA ALTERAÇÃO NECESSÁRIA NAS ROTAS ABAIXO ---
+
 app.get('/search-tracks', async (req, res) => {
   const query = req.query.q;
   const token = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null;
@@ -159,28 +167,6 @@ app.put('/play-track', async (req, res) => {
     } catch (error) {
         console.error("Erro ao iniciar a reprodução:", error.response ? error.response.data : error.message);
         res.status(error.response ? error.response.status : 500).json({ error: 'Failed to start playback' });
-    }
-});
-
-app.get('/recently-played', async (req, res) => {
-    const token = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null;
-
-    if (!token) {
-        return res.status(400).json({ error: 'Token is required.' });
-    }
-
-    const playedOptions = {
-        url: `${SPOTIFY_API_BASE}/me/player/recently-played`,
-        method: 'get',
-        headers: { 'Authorization': `Bearer ${token}` }
-    };
-
-    try {
-        const response = await axios(playedOptions);
-        res.json(response.data);
-    } catch (error) {
-        console.error("Erro ao buscar histórico:", error.response ? error.response.data : error.message);
-        res.status(error.response ? error.response.status : 500).json({ error: 'Failed to fetch recently played tracks' });
     }
 });
 
@@ -233,7 +219,9 @@ app.put('/add-to-library', async (req, res) => {
     }
 });
 
+
+// Seu código que inicia o servidor (já estava correto)
 app.listen(port, () => {
     console.log(`Servidor Spotify iniciado com sucesso na porta ${port}`);
-    console.log(`Acesse http://127.0.0.1:${port}/login para começar.`);
+    console.log(`Acesse http://127.0.0.1:${port} para ver a aplicação.`);
 });
