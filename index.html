@@ -193,100 +193,104 @@
         </section>
     </main>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Lógica do menu hambúrguer (mantida)
-            const hamburguerIcon = document.querySelector('.hamburguer-icon');
-            const mobileMenu = document.querySelector('.mobile-menu');
+    document.addEventListener('DOMContentLoaded', () => {
+        // Lógica do menu hambúrguer (mantida)
+        const hamburguerIcon = document.querySelector('.hamburguer-icon');
+        const mobileMenu = document.querySelector('.mobile-menu');
 
-            if (hamburguerIcon && mobileMenu) {
-                hamburguerIcon.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('active');
-                });
+        if (hamburguerIcon && mobileMenu) {
+            hamburguerIcon.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        // Efeito Matrix (mantido)
+        const canvas = document.getElementById('matrix-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            const heroSection = document.getElementById('hero');
+            const resizeCanvas = () => {
+                canvas.width = window.innerWidth;
+                canvas.height = heroSection.offsetHeight;
+            };
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const katakana = 'アァカサタナハマヤャラワガザダバパヴィギジヂビピヴグズブヅプヱヲンヰウゥクスツヌフムユュルグズブヅプ';
+            const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const nums = '0123456789';
+            const alphabet = katakana + latin + nums;
+            const fontSize = 16;
+            const columns = Math.floor(canvas.width / fontSize);
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops.push(1);
             }
 
-            // Efeito Matrix (mantido)
-            const canvas = document.getElementById('matrix-canvas');
-            if (canvas) {
-                const ctx = canvas.getContext('2d');
-                const heroSection = document.getElementById('hero');
-                const resizeCanvas = () => {
-                    canvas.width = window.innerWidth;
-                    canvas.height = heroSection.offsetHeight;
-                };
-                resizeCanvas();
-                window.addEventListener('resize', resizeCanvas);
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--cor-matrix');
+                ctx.font = fontSize + 'px monospace';
 
-                const katakana = 'アァカサタナハマヤャラワガザダバパヴィギジヂビピヴグズブヅプヱヲンヰウゥクスツヌフムユュルグズブヅプ';
-                const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                const nums = '0123456789';
-                const alphabet = katakana + latin + nums;
-                const fontSize = 16;
-                const columns = Math.floor(canvas.width / fontSize);
-                const drops = [];
-                for (let i = 0; i < columns; i++) {
-                    drops.push(1);
-                }
-
-                function drawMatrix() {
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--cor-matrix');
-                    ctx.font = fontSize + 'px monospace';
-
-                    for (let i = 0; i < drops.length; i++) {
-                        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                            drops[i] = 0;
-                        }
-                        drops[i]++;
+                for (let i = 0; i < drops.length; i++) {
+                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
                     }
+                    drops[i]++;
                 }
-                setInterval(drawMatrix, 33);
             }
+            setInterval(drawMatrix, 33);
+        }
 
-            // Lógica para alternar idioma
-            const langBtn = document.getElementById('language-btn');
-            let currentLang = 'pt';
+        // Lógica para alternar idioma
+        const langBtn = document.getElementById('language-btn');
+        let currentLang = 'pt';
 
-            // Define o idioma inicial com base no HTML, que agora está em inglês
-            if (document.documentElement.lang === 'en') {
+        // Define o idioma inicial com base no HTML, que agora está em inglês
+        if (document.documentElement.lang === 'en') {
+            currentLang = 'en';
+            // Altera o texto do botão para "MUDAR LINGUAGEM" se a página estiver em inglês
+            langBtn.textContent = 'MUDAR LINGUAGEM';
+        } else {
+            // Altera o texto do botão para "LANGUAGE TOGGLE" se a página estiver em português
+            langBtn.textContent = 'LANGUAGE TOGGLE';
+        }
+
+        langBtn.addEventListener('click', () => {
+            if (currentLang === 'pt') {
+                translatePage('en');
                 currentLang = 'en';
-                langBtn.textContent = 'PT'; // Se o HTML começar em EN, o botão deve mostrar PT para a próxima ação
+                // Altera o texto do botão para "MUDAR LINGUAGEM"
+                langBtn.textContent = 'MUDAR LINGUAGEM';
+                document.documentElement.lang = 'en';
             } else {
-                langBtn.textContent = 'EN'; // Se o HTML começar em PT, o botão deve mostrar EN para a próxima ação
+                translatePage('pt');
+                currentLang = 'pt';
+                // Altera o texto do botão para "LANGUAGE TOGGLE"
+                langBtn.textContent = 'LANGUAGE TOGGLE';
+                document.documentElement.lang = 'pt';
             }
+        });
 
-            langBtn.addEventListener('click', () => {
-                if (currentLang === 'pt') {
-                    translatePage('en');
-                    currentLang = 'en';
-                    langBtn.textContent = 'PT';
-                    document.documentElement.lang = 'en'; // Atualiza o atributo lang da tag <html>
-                } else {
-                    translatePage('pt');
-                    currentLang = 'pt';
-                    langBtn.textContent = 'EN';
-                    document.documentElement.lang = 'pt'; // Atualiza o atributo lang da tag <html>
+        function translatePage(lang) {
+            const elements = document.querySelectorAll('[data-en], [data-pt]');
+            elements.forEach(el => {
+                const translation = el.getAttribute(`data-${lang}`);
+                if (translation) {
+                    el.textContent = translation;
                 }
             });
-
-            function translatePage(lang) {
-                const elements = document.querySelectorAll('[data-en], [data-pt]');
-                elements.forEach(el => {
-                    const translation = el.getAttribute(`data-${lang}`);
-                    if (translation) {
-                        el.textContent = translation;
-                    }
-                });
-                // Traduz o título da página
-                document.title = (lang === 'en') ? 'Igor Americano | Portfolio' : 'Igor Americano | Portfólio';
-            }
-            
-            // Chama translatePage no carregamento para garantir que o idioma inicial esteja correto
-            translatePage(currentLang);
-        });
-    </script>
+            // Traduz o título da página
+            document.title = (lang === 'en') ? 'Igor Americano | Portfolio' : 'Igor Americano | Portfólio';
+        }
+        
+        // Chama translatePage no carregamento para garantir que o idioma inicial esteja correto
+        translatePage(currentLang);
+    });
+</script>
     <footer>
         <p data-en="© 2025 Igor Americano Fernandes. All rights reserved." data-pt="&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.">&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.</p>
     </footer>
