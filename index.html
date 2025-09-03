@@ -16,12 +16,6 @@
             position: relative;
         }
 
-        .titulo h1 {
-            font-size: 2em;
-            margin: 0;
-            z-index: 1001;
-        }
-
         .nav-links {
             display: flex;
             list-style: none;
@@ -54,7 +48,7 @@
             display: none;
             cursor: pointer;
             font-size: 1.8em;
-            color: #fff;
+            color: #333; /* <-- AQUI ESTÁ A MUDANÇA: Cor do ícone de hambúrguer */
             z-index: 1002;
         }
 
@@ -124,7 +118,7 @@
                 <li><a href="#sobre" class="btn-nav" data-en="About Me" data-pt="Sobre Mim">Sobre Mim</a></li>
                 <li><a href="#projetos" class="btn-nav" data-en="Projects" data-pt="Projetos">Projetos</a></li>
                 <li><a href="#contato" class="btn-nav" data-en="Contact" data-pt="Contato">Contato</a></li>
-                <li><button id="language-btn" class="language-toggle">EN</button></li>
+                <li><button id="language-btn" class="language-toggle" data-en-text="LANGUAGE TOGGLE" data-pt-text="MUDAR LINGUAGEM">LANGUAGE TOGGLE</button></li>
             </ul>
 
             <ul class="mobile-menu">
@@ -132,7 +126,7 @@
                 <li><a href="#sobre" class="btn-nav" data-en="About Me" data-pt="Sobre Mim">Sobre Mim</a></li>
                 <li><a href="#projetos" class="btn-nav" data-en="Projects" data-pt="Projetos">Projetos</a></li>
                 <li><a href="#contato" class="btn-nav" data-en="Contact" data-pt="Contato">Contato</a></li>
-                <li><button id="language-btn-mobile" class="language-toggle">EN</button></li>
+                <li><button id="language-btn-mobile" class="language-toggle" data-en-text="LANGUAGE TOGGLE" data-pt-text="MUDAR LINGUAGEM">MUDAR LINGUAGEM</button></li>
             </ul>
         </nav>
     </header>
@@ -246,123 +240,104 @@
         </section>
     </main>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const hamburguerIcon = document.querySelector('.hamburguer-icon');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const langBtnDesktop = document.getElementById('language-btn');
-        const langBtnMobile = document.getElementById('language-btn-mobile');
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburguerIcon = document.querySelector('.hamburguer-icon');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const langBtnDesktop = document.getElementById('language-btn');
+            const langBtnMobile = document.getElementById('language-btn-mobile');
 
-        if (hamburguerIcon && mobileMenu) {
-            hamburguerIcon.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-            });
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
+            if (hamburguerIcon && mobileMenu) {
+                hamburguerIcon.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                });
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            const canvas = document.getElementById('matrix-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                const heroSection = document.getElementById('hero');
+                const resizeCanvas = () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = heroSection.offsetHeight;
+                };
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                const katakana = 'アァカサタナハマヤャラワガザダバパヴィギジヂビピヴグズブヅプヱヲンヰウゥクスツヌフムユュルグズブヅプ';
+                const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const nums = '0123456789';
+                const alphabet = katakana + latin + nums;
+                const fontSize = 16;
+                const columns = Math.floor(canvas.width / fontSize);
+                const drops = [];
+                for (let i = 0; i < columns; i++) {
+                    drops.push(1);
+                }
+
+                function drawMatrix() {
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--cor-matrix');
+                    ctx.font = fontSize + 'px monospace';
+
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                }
+                setInterval(drawMatrix, 33);
+            }
+
+            let currentLang = document.documentElement.lang;
+
+            function updateButtonText(lang) {
+                const desktopText = lang === 'en' ? langBtnDesktop.getAttribute('data-en-text') : langBtnDesktop.getAttribute('data-pt-text');
+                const mobileText = lang === 'en' ? langBtnMobile.getAttribute('data-en-text') : langBtnMobile.getAttribute('data-pt-text');
+                if (langBtnDesktop) langBtnDesktop.textContent = desktopText;
+                if (langBtnMobile) langBtnMobile.textContent = mobileText;
+            }
+
+            function translatePage(lang) {
+                const elements = document.querySelectorAll('[data-en], [data-pt]');
+                elements.forEach(el => {
+                    const translation = el.getAttribute(`data-${lang}`);
+                    if (translation) {
+                        el.textContent = translation;
+                    }
+                });
+                document.title = (lang === 'en') ? 'Igor Americano | Portfolio' : 'Igor Americano | Portfólio';
+                document.documentElement.lang = lang;
+                updateButtonText(lang);
+            }
+
+            if (langBtnDesktop) {
+                langBtnDesktop.addEventListener('click', () => {
+                    const newLang = currentLang === 'pt' ? 'en' : 'pt';
+                    currentLang = newLang;
+                    translatePage(newLang);
+                });
+            }
+
+            if (langBtnMobile) {
+                langBtnMobile.addEventListener('click', () => {
+                    const newLang = currentLang === 'pt' ? 'en' : 'pt';
+                    currentLang = newLang;
+                    translatePage(newLang);
                     mobileMenu.classList.remove('active');
                 });
-            });
-        }
-
-        const canvas = document.getElementById('matrix-canvas');
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            const heroSection = document.getElementById('hero');
-            const resizeCanvas = () => {
-                canvas.width = window.innerWidth;
-                canvas.height = heroSection.offsetHeight;
-            };
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            const katakana = 'アァカサタナハマヤャラワガザダバパヴィギジヂビピヴグズブヅプヱヲンヰウゥクスツヌフムユュルグズブヅプ';
-            const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const nums = '0123456789';
-            const alphabet = katakana + latin + nums;
-            const fontSize = 16;
-            const columns = Math.floor(canvas.width / fontSize);
-            const drops = [];
-            for (let i = 0; i < columns; i++) {
-                drops.push(1);
             }
-
-            function drawMatrix() {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--cor-matrix');
-                ctx.font = fontSize + 'px monospace';
-
-                for (let i = 0; i < drops.length; i++) {
-                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
-                }
-            }
-            setInterval(drawMatrix, 33);
-        }
-
-        let currentLang = 'pt';
-        if (document.documentElement.lang === 'en') {
-            currentLang = 'en';
-            if (langBtnDesktop) langBtnDesktop.textContent = 'MUDAR LINGUAGEM';
-            if (langBtnMobile) langBtnMobile.textContent = 'MUDAR LINGUAGEM';
-        } else {
-            if (langBtnDesktop) langBtnDesktop.textContent = 'LANGUAGE TOGGLE';
-            if (langBtnMobile) langBtnMobile.textContent = 'LANGUAGE TOGGLE';
-        }
-
-        function translatePage(lang) {
-            const elements = document.querySelectorAll('[data-en], [data-pt]');
-            elements.forEach(el => {
-                const translation = el.getAttribute(`data-${lang}`);
-                if (translation) {
-                    el.textContent = translation;
-                }
-            });
-            document.title = (lang === 'en') ? 'Igor Americano | Portfolio' : 'Igor Americano | Portfólio';
-        }
-
-        if (langBtnDesktop) {
-            langBtnDesktop.addEventListener('click', () => {
-                if (currentLang === 'pt') {
-                    translatePage('en');
-                    currentLang = 'en';
-                    langBtnDesktop.textContent = 'MUDAR LINGUAGEM';
-                    if (langBtnMobile) langBtnMobile.textContent = 'MUDAR LINGUAGEM';
-                    document.documentElement.lang = 'en';
-                } else {
-                    translatePage('pt');
-                    currentLang = 'pt';
-                    langBtnDesktop.textContent = 'LANGUAGE TOGGLE';
-                    if (langBtnMobile) langBtnMobile.textContent = 'LANGUAGE TOGGLE';
-                    document.documentElement.lang = 'pt';
-                }
-            });
-        }
-
-        if (langBtnMobile) {
-            langBtnMobile.addEventListener('click', () => {
-                if (currentLang === 'pt') {
-                    translatePage('en');
-                    currentLang = 'en';
-                    if (langBtnDesktop) langBtnDesktop.textContent = 'MUDAR LINGUAGEM';
-                    langBtnMobile.textContent = 'MUDAR LINGUAGEM';
-                    document.documentElement.lang = 'en';
-                } else {
-                    translatePage('pt');
-                    currentLang = 'pt';
-                    if (langBtnDesktop) langBtnDesktop.textContent = 'LANGUAGE TOGGLE';
-                    langBtnMobile.textContent = 'LANGUAGE TOGGLE';
-                    document.documentElement.lang = 'pt';
-                }
-                mobileMenu.classList.remove('active');
-            });
-        }
-        
-        translatePage(currentLang);
-    });
+            
+            translatePage(currentLang);
+        });
     </script>
     <footer>
         <p data-en="© 2025 Igor Americano Fernandes. All rights reserved." data-pt="&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.">&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.</p>
