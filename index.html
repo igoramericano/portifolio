@@ -1,21 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Igor Americano | Portfólio</title>
+    <title>Igor Americano | Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="estilos/index.css">
+    <style>
+        /* Adicione ou modifique estas regras no seu arquivo 'estilos/index.css' */
+
+        /* Estilo para o cabeçalho e navegação para acomodar o botão de idioma */
+        .titulo nav {
+            display: flex;
+            justify-content: space-between; /* Espalha os itens: título à esquerda, links e botão à direita */
+            align-items: center;
+            padding: 1rem 2rem; /* Ajuste o padding conforme necessário */
+            /* Outros estilos de nav, como background-color, etc. */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center; /* Alinha os links e o botão verticalmente */
+        }
+
+        .nav-links li {
+            margin-left: 20px; /* Espaçamento entre os links */
+        }
+
+        .language-toggle {
+            background-color: rgb(205, 102, 102);
+            color: #fff;
+            border: 1px solid #444;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 20px; /* Espaçamento entre o último link e o botão */
+            white-space: nowrap; /* Evita quebra de linha no texto do botão */
+        }
+        .language-toggle:hover {
+            background-color: #5ca167;
+        }
+
+        /* Se você tiver um menu responsivo (hambúrguer), precisará ajustar estes estilos também */
+        /* Por exemplo, para telas menores, o botão de idioma pode precisar de um tratamento diferente */
+        @media (max-width: 768px) {
+            .titulo nav {
+                flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+                justify-content: center;
+            }
+            .titulo h1 {
+                width: 100%; /* O título pode ocupar toda a largura */
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .nav-links {
+                width: 100%; /* Links podem ocupar toda a largura e centralizar */
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            .language-toggle {
+                margin-left: 0; /* Remove a margem lateral */
+                width: 100%; /* Ocupa toda a largura abaixo dos links */
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="titulo">
         <nav>
             <h1>Igor Americano</h1>
             <ul class="nav-links">
-                <li><a href="#habilidades" class="btn-nav">Habilidades</a></li>
-                <li><a href="#sobre" class="btn-nav">Sobre Mim</a></li>
-                <li><a href="#projetos" class="btn-nav">Projetos</a></li>
-                <li><a href="#contato" class="btn-nav">Contato</a></li>
+                <li><a href="#habilidades" class="btn-nav" data-en="Skills" data-pt="Habilidades">Habilidades</a></li>
+                <li><a href="#sobre" class="btn-nav" data-en="About Me" data-pt="Sobre Mim">Sobre Mim</a></li>
+                <li><a href="#projetos" class="btn-nav" data-en="Projects" data-pt="Projetos">Projetos</a></li>
+                <li><a href="#contato" class="btn-nav" data-en="Contact" data-pt="Contato">Contato</a></li>
+                <li><button id="language-btn" class="language-toggle">EN</button></li>
             </ul>
         </nav>
     </header>
@@ -25,15 +89,14 @@
             <div class="matrix-container">
                 <canvas id="matrix-canvas"></canvas>
             </div>
-            <!-- Nova div para envolver o conteúdo e garantir que o efeito passe ao redor -->
             <div class="hero-content">
-                <h2>Olá, sou Igor Americano.</h2>
-                <p>Desenvolvedor focado em front-end e desenvolvimento web.</p>
+                <h2 data-en="Hello, I'm Igor Americano." data-pt="Olá, sou Igor Americano.">Olá, sou Igor Americano.</h2>
+                <p data-en="Developer focused on front-end and web development." data-pt="Desenvolvedor focado em front-end e desenvolvimento web.">Desenvolvedor focado em front-end e desenvolvimento web.</p>
             </div>
         </section>
 
         <section id="habilidades">
-            <h3>Minhas Habilidades</h3>
+            <h3 data-en="My Skills" data-pt="Minhas Habilidades">Minhas Habilidades</h3>
             <div class="grid-habilidades">
                 <div class="habilidade-item">
                     <i class="fab fa-html5"></i>
@@ -49,11 +112,11 @@
                 </div>
                 <div class="habilidade-item">
                     <i class="fas fa-database"></i>
-                    <h4>Banco de Dados</h4>
+                    <h4 data-en="Database" data-pt="Banco de Dados">Banco de Dados</h4>
                 </div>
                 <div class="habilidade-item">
                     <i class="fas fa-lock"></i>
-                    <h4>Segurança</h4>
+                    <h4 data-en="Security" data-pt="Segurança">Segurança</h4>
                 </div>
                 <div class="habilidade-item">
                     <i class="fab fa-git-alt"></i>
@@ -70,61 +133,58 @@
             </div>
         </section>
 
-
         <section id="sobre">
-            <h3>Sobre Mim</h3>
+            <h3 data-en="About Me" data-pt="Sobre Mim">Sobre Mim</h3>
             <div class="sobre-tópicos">
                 <div class="tópico-item">
-                    Formação → Programação Full Stack com IA na Infinity School (em andamento).
+                    <span data-en="Education → Full Stack Development with AI at Infinity School (in progress)." data-pt="Formação → Programação Full Stack com IA na Infinity School (em andamento).">Formação → Programação Full Stack com IA na Infinity School (em andamento).</span>
                 </div>
                 <div class="tópico-item">
-                    Idiomas → Português (nativo) // Inglês (fluente) // Espanhol (básico).
+                    <span data-en="Languages → Portuguese (native) // English (fluent) // Spanish (basic)." data-pt="Idiomas → Português (nativo) // Inglês (fluente) // Espanhol (básico).">Idiomas → Português (nativo) // Inglês (fluente) // Espanhol (básico).</span>
                 </div>
                 <div class="tópico-item">
-                    Foco → front-end e desenvolvimento web.
+                    <span data-en="Focus → Front-end and web development." data-pt="Foco → front-end e desenvolvimento web.">Foco → front-end e desenvolvimento web.</span>
                 </div>
                 <div class="tópico-item">
-                    Certificações → Mais de 120 horas em desenvolvimento web (estrutura semântica, responsividade) e 40 horas em Inteligência Artificial.
+                    <span data-en="Certifications → More than 120 hours in Full-Stack development (semantic structure, responsiveness, PYhton and JavaScript ) and 40 hours in Artificial Intelligence." data-pt="Certificações → Mais de 120 horas em desenvolvimento web (estrutura semântica, responsividade) e 40 horas em Inteligência Artificial.">Certificações → Mais de 120 horas em desenvolvimento full-stack (estrutura semântica, responsividade, PYthon e JavaScript) e 40 horas em Inteligência Artificial.</span>
                 </div>
                 <div class="tópico-item">
-                    Habilidades Pessoais → Pensamento focado em soluções, autodidata, organização e flexibilidade.
+                    <span data-en="Personal Skills → Solution-focused thinking, self-taught, organization, and flexibility." data-pt="Habilidades Pessoais → Pensamento focado em soluções, autodidata, organização e flexibilidade.">Habilidades Pessoais → Pensamento focado em soluções, autodidata, organização e flexibilidade.</span>
                 </div>
             </div>
         </section>
         
         <section id="projetos">
-            <h3>Meus Projetos</h3>
+            <h3 data-en="My Projects" data-pt="Meus Projetos">Meus Projetos</h3>
             <div class="projeto-item">
                 <img src="imagens/site01.png" alt="American Tube">
                 <h4>American Tube</h4>
-                <p>Site Streaming com recursos JavaScript</p>
-                <a href="https://igoramericano.github.io/projeto-youtube/index.html" target="_blank">Ver Projeto</a>
-             </div>
-                <div class="projeto-item">
-                    <img src="imagens/site02.png" alt="Página de Login">
-                    <h4>Login Page</h4>
-                    <p>Login + JavaScript Exit</p>
-                    <a href="site02.html" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto-item">
-                    <img src="imagens/site03.png" alt="Poema sobre tecnologia">
-                    <h4>Bitcoin Trader webpage</h4>
-                    <p>Backend de gráficos e envio de mensagens</p>
-                    <a href="https://bit.ly/45Kya2S" target="_blank">Ver Projeto</a>
-                </div>
-                <div class="projeto-item">
-                    <img src="imagens/site05.png" alt="Spotify Clone">
-                    <h4>Spotify Premium Clone</h4>
-                    <p>Spotify clone model</p>
-                    <a href="public/index.html" target="_blank">Ver Projeto</a>
-                </div>
-    
+                <p data-en="Streaming website with JavaScript features" data-pt="Site Streaming com recursos JavaScript">Site Streaming com recursos JavaScript</p>
+                <a href="https://igoramericano.github.io/projeto-youtube/index.html" target="_blank" data-en="View Project" data-pt="Ver Projeto">Ver Projeto</a>
+            </div>
+            <div class="projeto-item">
+                <img src="imagens/site02.png" alt="Página de Login">
+                <h4>Login Page</h4>
+                <p data-en="Login + JavaScript Exit" data-pt="Login + JavaScript Exit">Login + JavaScript Exit</p>
+                <a href="site02.html" target="_blank" data-en="View Project" data-pt="Ver Projeto">Ver Projeto</a>
+            </div>
+            <div class="projeto-item">
+                <img src="imagens/site03.png" alt="Poema sobre tecnologia">
+                <h4>Bitcoin Trader webpage</h4>
+                <p data-en="Backend for charts and message sending" data-pt="Backend de gráficos e envio de mensagens">Backend de gráficos e envio de mensagens</p>
+                <a href="https://bit.ly/45Kya2S" target="_blank" data-en="View Project" data-pt="Ver Projeto">Ver Projeto</a>
+            </div>
+            <div class="projeto-item">
+                <img src="imagens/site05.png" alt="Spotify Clone">
+                <h4>Spotify Premium Clone</h4>
+                <p data-en="Spotify clone model" data-pt="Spotify clone model">Spotify clone model</p>
+                <a href="public/index.html" target="_blank" data-en="View Project" data-pt="Ver Projeto">Ver Projeto</a>
             </div>
         </section>
 
         <section id="contato">
-            <h3>Entre em Contato</h3>
-            <p>Estou disponível para novos projetos e colaborações. Vamos conversar!</p>
+            <h3 data-en="Get in Touch" data-pt="Entre em Contato">Entre em Contato</h3>
+            <p data-en="I am available for new projects and collaborations. Let's talk!" data-pt="Estou disponível para novos projetos e colaborações. Vamos conversar!">Estou disponível para novos projetos e colaborações. Vamos conversar!</p>
             <div class="contato-links">
                 <a href="https://github.com/igoramericano?tab=repositories" target="_blank">GitHub</a>
                 <a href="https://instagram.com/igoramericano" target="_blank">Instagram</a>
@@ -134,7 +194,7 @@
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Lógica do menu hambúrguer
+            // Lógica do menu hambúrguer (mantida)
             const hamburguerIcon = document.querySelector('.hamburguer-icon');
             const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -144,19 +204,15 @@
                 });
             }
 
-            // Efeito Matrix
+            // Efeito Matrix (mantido)
             const canvas = document.getElementById('matrix-canvas');
             if (canvas) {
                 const ctx = canvas.getContext('2d');
                 const heroSection = document.getElementById('hero');
-
-                // A função resizeCanvas ajusta o tamanho do canvas para o tamanho da seção #hero
                 const resizeCanvas = () => {
                     canvas.width = window.innerWidth;
                     canvas.height = heroSection.offsetHeight;
                 };
-
-                // Garante que o canvas seja redimensionado ao carregar e ao redimensionar a janela
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
 
@@ -164,45 +220,75 @@
                 const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 const nums = '0123456789';
                 const alphabet = katakana + latin + nums;
-
                 const fontSize = 16;
                 const columns = Math.floor(canvas.width / fontSize);
-
                 const drops = [];
                 for (let i = 0; i < columns; i++) {
                     drops.push(1);
                 }
 
                 function drawMatrix() {
-                    // Preenche o canvas com um fundo semi-transparente para criar o rastro
                     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                    // Configura a cor e a fonte para o texto
                     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--cor-matrix');
                     ctx.font = fontSize + 'px monospace';
 
-                    // Desenha os caracteres
                     for (let i = 0; i < drops.length; i++) {
                         const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
                         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                        // Reseta a coluna quando atinge a parte inferior, com uma chance aleatória
                         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                             drops[i] = 0;
                         }
                         drops[i]++;
                     }
                 }
-                
-                // Inicia o loop de animação
                 setInterval(drawMatrix, 33);
             }
+
+            // Lógica para alternar idioma
+            const langBtn = document.getElementById('language-btn');
+            let currentLang = 'pt';
+
+            // Define o idioma inicial com base no HTML, que agora está em inglês
+            if (document.documentElement.lang === 'en') {
+                currentLang = 'en';
+                langBtn.textContent = 'PT'; // Se o HTML começar em EN, o botão deve mostrar PT para a próxima ação
+            } else {
+                langBtn.textContent = 'EN'; // Se o HTML começar em PT, o botão deve mostrar EN para a próxima ação
+            }
+
+            langBtn.addEventListener('click', () => {
+                if (currentLang === 'pt') {
+                    translatePage('en');
+                    currentLang = 'en';
+                    langBtn.textContent = 'PT';
+                    document.documentElement.lang = 'en'; // Atualiza o atributo lang da tag <html>
+                } else {
+                    translatePage('pt');
+                    currentLang = 'pt';
+                    langBtn.textContent = 'EN';
+                    document.documentElement.lang = 'pt'; // Atualiza o atributo lang da tag <html>
+                }
+            });
+
+            function translatePage(lang) {
+                const elements = document.querySelectorAll('[data-en], [data-pt]');
+                elements.forEach(el => {
+                    const translation = el.getAttribute(`data-${lang}`);
+                    if (translation) {
+                        el.textContent = translation;
+                    }
+                });
+                // Traduz o título da página
+                document.title = (lang === 'en') ? 'Igor Americano | Portfolio' : 'Igor Americano | Portfólio';
+            }
+            
+            // Chama translatePage no carregamento para garantir que o idioma inicial esteja correto
+            translatePage(currentLang);
         });
     </script>
     <footer>
-        <p>&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.</p>
+        <p data-en="© 2025 Igor Americano Fernandes. All rights reserved." data-pt="&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.">&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.</p>
     </footer>
-
 </body>
 </html>
