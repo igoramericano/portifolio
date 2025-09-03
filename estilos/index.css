@@ -22,8 +22,8 @@
     /* Nova cor para a seção 'Sobre Mim' */
     --cor-inteligencia: #6a0dad; /* Roxo */
     /* Cor para a chuva Matrix */
-    --cor-matrix: #00ffff; /* Cor azul ciano para o efeito Matrix */
-    --cor-fundo-matrix: #000; /* Nova cor de fundo para a seção do Matrix */
+    --cor-matrix: #008cff; /* Cor azul ciano para o efeito Matrix */
+    --cor-fundo-matrix: #94949479; /* Nova cor de fundo para a seção do Matrix */
     --cor-texto-matrix: #fff; /* Nova cor para o texto na seção do Matrix */
 }
 
