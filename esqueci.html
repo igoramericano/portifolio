@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <title>Recuperar Senha</title>
+    <link rel="stylesheet" href="estilos/site02.css">
+    <link rel="stylesheet" href="estilos/site02media.css">
+</head>
+<body>
+    <main>
+        <section id="login">
+            <div id="imagem">
+                </div>
+            <div id="formulario">
+                <h1>Recuperar Senha</h1>
+                <p>Digite seu e-mail para receber um link de redefinição.</p>
+                <form action="esqueci.php" method="post">
+                    <div class="campo">
+                        <span class="material-symbols-outlined">mail</span>
+                        <input type="email" name="email" id="iemail" placeholder="Digite seu e-mail" autocomplete="email" required maxlength="30">
+                        <label for="iemail">E-mail</label>
+                    </div>
+                    <div id="submit">
+                        <input type="submit" value="Redefinir Senha">
+                        <a href="site02.html">Voltar para o Login</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="site02.js"></script>
+</body>
+</html>
