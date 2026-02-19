@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Igor Americano | Portfolio</title>
+    <title>Igor Americano | Desenvolvedor Web</title>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="estilos/index.css">
+
     <style>
-        /* Estilos do Cabeçalho e Navegação (Desktop First) */
+        /* Estilos do Cabeçalho e Navegação */
         .titulo nav {
             display: flex;
             justify-content: space-between;
@@ -43,16 +45,16 @@
             background-color: #5ca167;
         }
 
-        /* Hambúrguer Icon - Escondido por padrão no desktop */
+        /* Ícone Hamburguer */
         .hamburguer-icon {
             display: none;
             cursor: pointer;
             font-size: 1.8em;
-            color: #333; /* <-- AQUI ESTÁ A MUDANÇA: Cor do ícone de hambúrguer */
+            color: #333;
             z-index: 1002;
         }
 
-        /* Menu Mobile - Escondido por padrão */
+        /* Menu Mobile */
         .mobile-menu {
             display: none;
             position: absolute;
@@ -80,7 +82,8 @@
             text-align: center;
         }
 
-        .mobile-menu a, .mobile-menu button {
+        .mobile-menu a,
+        .mobile-menu button {
             color: #fff;
             font-size: 1.5em;
             padding: 10px 20px;
@@ -89,30 +92,30 @@
             margin: 0 auto;
         }
 
-        /* Media Query para Mobile */
+        /* Mobile */
         @media (max-width: 768px) {
             .titulo nav {
                 padding: 1rem;
             }
-
             .nav-links {
-                display: none; /* Esconde o menu de desktop */
+                display: none;
             }
-
             .hamburguer-icon {
-                display: block; /* Exibe o ícone de hambúrguer */
+                display: block;
             }
         }
     </style>
 </head>
+
 <body>
     <header class="titulo">
         <nav>
-            <h1>Igor Americano</h1>
+            <h1>Igor Americano | Desenvolvedor Web</h1>
+
             <div class="hamburguer-icon">
                 <i class="fas fa-bars"></i>
             </div>
-            
+
             <ul class="nav-links">
                 <li><a href="#habilidades" class="btn-nav" data-en="Skills" data-pt="Habilidades">Habilidades</a></li>
                 <li><a href="#sobre" class="btn-nav" data-en="About Me" data-pt="Sobre Mim">Sobre Mim</a></li>
@@ -132,119 +135,198 @@
     </header>
 
     <main>
+
+        <!-- HERO -->
         <section id="hero">
             <div class="matrix-container">
                 <canvas id="matrix-canvas"></canvas>
             </div>
+
             <div class="hero-content">
-                <h2 data-en="Hello, I'm Igor Americano." data-pt="Olá, sou Igor Americano.">Olá, sou Igor Americano.</h2>
-                <p data-en="Developer focused on front-end and web development." data-pt="Desenvolvedor focado em front-end e desenvolvimento web.">Desenvolvedor focado em front-end e desenvolvimento web.</p>
+                <h2 data-en="Hello, I'm Igor Americano, seeking an Internship."
+                    data-pt="Olá, sou Igor Americano, em busca de Estágio.">
+                    Olá, sou Igor Americano, em busca de Estágio.
+                </h2>
+
+                <p data-en="Developer focused on front-end and web development. Ready to contribute remotely using technologies like JavaScript, HTML, and CSS."
+                   data-pt="Desenvolvedor focado em front-end e desenvolvimento web. Busco Estágio Remoto e sou pronto para contribuir com JavaScript, HTML e CSS.">
+                    Desenvolvedor focado em front-end e desenvolvimento web. Busco Estágio Remoto e sou pronto para contribuir com JavaScript, HTML e CSS.
+                </p>
             </div>
         </section>
 
+        <!-- HABILIDADES -->
         <section id="habilidades">
             <h3 data-en="My Skills" data-pt="Minhas Habilidades">Minhas Habilidades</h3>
-            <div class="grid-habilidades">
+
+            <h4>Domínio Principal (Front-end Essentials)</h4>
+            <div class="grid-habilidades foco-principal">
                 <div class="habilidade-item">
                     <i class="fab fa-html5"></i>
-                    <h4>HTML5</h4>
+                    <h4>HTML5 (Semântico)</h4>
                 </div>
                 <div class="habilidade-item">
                     <i class="fab fa-css3-alt"></i>
-                    <h4>CSS3</h4>
+                    <h4>CSS3 (Responsivo)</h4>
                 </div>
                 <div class="habilidade-item">
                     <i class="fab fa-js-square"></i>
-                    <h4>JavaScript</h4>
+                    <h4>JavaScript (Básico)</h4>
                 </div>
-                <div class="habilidade-item">
-                    <i class="fas fa-database"></i>
-                    <h4 data-en="Database" data-pt="Banco de Dados">Banco de Dados</h4>
-                </div>
-                <div class="habilidade-item">
-                    <i class="fas fa-lock"></i>
-                    <h4 data-en="Security" data-pt="Segurança">Segurança</h4>
-                </div>
-                <div class="habilidade-item">
-                    <i class="fab fa-git-alt"></i>
-                    <h4>Git</h4>
-                </div>
+            </div>
+
+            <h4>Diferencial (Back-end, Python & Dados)</h4>
+            <div class="grid-habilidades conhecimento-back">
                 <div class="habilidade-item">
                     <i class="fab fa-python"></i>
-                    <h4>Python</h4>
+                    <h4 data-en="Python (POO)" data-pt="Python (POO)">Python (POO)</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h4 data-en="Streamlit (Data Apps)" data-pt="Streamlit (Apps de Dados)">Streamlit (Apps de Dados)</h4>
                 </div>
                 <div class="habilidade-item">
                     <i class="fab fa-node-js"></i>
-                    <h4>Node.js</h4>
+                    <h4>Node.js (Básico)</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fas fa-database"></i>
+                    <h4 data-en="Database" data-pt="Banco de Dados">Banco de Dados (SQL)</h4>
+                </div>
+            </div>
+
+            <h4>Ferramentas e Práticas Essenciais (Remoto)</h4>
+            <div class="grid-habilidades ferramentas-essenciais">
+                <div class="habilidade-item">
+                    <i class="fab fa-git-alt"></i>
+                    <h4>Git & GitHub</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fas fa-lock"></i>
+                    <h4 data-en="Security" data-pt="Segurança">Segurança (Boas Práticas)</h4>
+                </div>
+                <div class="habilidade-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h4 data-en="Remote Tools (Slack/Zoom)" data-pt="Comunicação Remota (Slack/Zoom)">Comunicação Remota (Slack/Zoom)</h4>
                 </div>
             </div>
         </section>
 
+        <!-- SOBRE -->
         <section id="sobre">
             <h3 data-en="About Me" data-pt="Sobre Mim">Sobre Mim</h3>
+
             <div class="sobre-tópicos">
+
                 <div class="tópico-item">
-                    <span data-en="Education → Full Stack Development with AI at Infinity School (in progress)." data-pt="Formação → Programação Full Stack com IA na Infinity School (em andamento).">Formação → Programação Full Stack com IA na Infinity School (em andamento).</span>
+                    <span data-en="Education → Full Stack Development with AI at Infinity School (in progress). Focused on Python and Object-Oriented Programming (POO)."
+                          data-pt="Formação → Programação Full Stack com IA na Infinity School (em andamento). Focado em Python e Programação Orientada a Objetos (POO).">
+                        Formação → Programação Full Stack com IA na Infinity School (em andamento). Focado em Python e Programação Orientada a Objetos (POO).
+                    </span>
                 </div>
+
                 <div class="tópico-item">
-                    <span data-en="Languages → Portuguese (native) // English (fluent) // Spanish (basic)." data-pt="Idiomas → Português (nativo) // Inglês (fluente) // Espanhol (básico).">Idiomas → Português (nativo) // Inglês (fluente) // Espanhol (básico).</span>
+                    <span data-en="Languages → Portuguese (native) // English (fluent) // Spanish (basic)."
+                          data-pt="Idiomas → Português (nativo) // Inglês (fluente) // Espanhol (básico).">
+                        Idiomas → Português (nativo) // Inglês (fluente) // Espanhol (básico).
+                    </span>
                 </div>
+
                 <div class="tópico-item">
-                    <span data-en="Focus → Front-end and web development." data-pt="Foco → front-end e desenvolvimento web.">Foco → front-end e desenvolvimento web.</span>
+                    <span data-en="Focus → Front-end development (Seeking Internship) with strong Python/Back-end foundation."
+                          data-pt="Foco → Desenvolvimento Front-end (Em busca de Estágio) com forte base em Python/Back-end.">
+                        Foco → Desenvolvimento Front-end (Em busca de Estágio) com forte base em Python/Back-end.
+                    </span>
                 </div>
+
                 <div class="tópico-item">
-                    <span data-en="Certifications → More than 120 hours in Full-Stack development (semantic structure, responsiveness, PYhton and JavaScript ) and 40 hours in Artificial Intelligence." data-pt="Certificações → Mais de 120 horas em desenvolvimento web (estrutura semântica, responsividade) e 40 horas em Inteligência Artificial.">Certificações → Mais de 120 horas em desenvolvimento full-stack (estrutura semântica, responsividade, PYthon e JavaScript) e 40 horas em Inteligência Artificial.</span>
+                    <span data-en="Certifications → More than 120 hours in Full-Stack development (semantic structure, responsiveness, PYthon and JavaScript ) and 40 hours in Artificial Intelligence."
+                          data-pt="Certificações → Mais de 120 horas em desenvolvimento full-stack (estrutura semântica, responsividade, PYthon e JavaScript) e 40 horas em Inteligência Artificial.">
+                        Certificações → Mais de 120 horas em desenvolvimento full-stack (estrutura semântica, responsividade, PYthon e JavaScript) e 40 horas em Inteligência Artificial.
+                    </span>
                 </div>
+
                 <div class="tópico-item">
-                    <span data-en="Personal Skills → Solution-focused thinking, self-taught, organization, and flexibility." data-pt="Habilidades Pessoais → Pensamento focado em soluções, autodidata, organização e flexibilidade.">Habilidades Pessoais → Pensamento focado em soluções, autodidata, organização e flexibilidade.</span>
+                    <span data-en="Personal Skills → Solution-focused thinking, self-taught, organization, and flexibility (Crucial for remote work)."
+                          data-pt="Habilidades Pessoais → Pensamento focado em soluções, autodidata, organização e flexibilidade (Essenciais para trabalho remoto).">
+                        Habilidades Pessoais → Pensamento focado em soluções, autodidata, organização e flexibilidade (Essenciais para trabalho remoto).
+                    </span>
                 </div>
+
             </div>
-        </section>
-        
-        <section id="projetos">
-            <h3 data-en="My Projects" data-pt="Meus Projetos">Meus Projetos</h3>
-            <div class="projeto-item">
-                <img src="imagens/site01.png" alt="American Tube">
-                <h4>American Tube</h4>
-                <p data-en="Streaming website with JavaScript features" data-pt="Site Streaming com recursos JavaScript">Site Streaming com recursos JavaScript</p>
-                <a href="https://igoramericano.github.io/projeto-youtube/index.html" target="_blank" data-en="View Project" data-pt="Ver Projeto">Ver Projeto</a>
-            </div>
-            <div class="projeto-item">
-                <img src="imagens/site02.png" alt="Página de Login">
-                <h4>Login Page</h4>
-                <p data-en="Login + JavaScript Exit" data-pt="Login + JavaScript Exit">Login + JavaScript Exit</p>
-                <a href="site02.html" target="_blank" data-en="View Project" data-pt="Ver Projeto">Ver Projeto</a>
-            </div>
-            <div class="projeto-item">
-                <img src="imagens/site03.png" alt="Poema sobre tecnologia">
-                <h4>Bitcoin Trader webpage</h4>
-                <p data-en="Backend for charts and message sending" data-pt="Backend de gráficos e envio de mensagens">Backend de gráficos e envio de mensagens</p>
-                <a href="https://bit.ly/45Kya2S" target="_blank" data-en="View Project" data-pt="Ver Projeto">Ver Projeto</a>
-            </div>
-            
         </section>
 
+        <!-- PROJETOS -->
+        <section id="projetos">
+            <h3 data-en="My Projects" data-pt="Meus Projetos">Meus Projetos</h3>
+
+            <div class="projeto-item">
+                <img src="imagens/site01.png" alt="American Tube">
+                <h4>American Tube (HTML, CSS, JS)</h4>
+                <p data-en="Streaming website with JavaScript features for interactive experience."
+                   data-pt="Site Streaming responsivo com recursos JavaScript para experiência interativa.">
+                    Site Streaming responsivo com recursos JavaScript para experiência interativa.
+                </p>
+                <a href="https://igoramericano.github.io/projeto-youtube/index.html" target="_blank" data-en="Live Demo" data-pt="Ver Projeto Online">Ver Projeto Online</a>
+                <a href="https://github.com/igoramericano/projeto-youtube" target="_blank" data-en="View Code (GitHub)" data-pt="Ver Código (GitHub)">Ver Código (GitHub)</a>
+            </div>
+
+            <div class="projeto-item">
+                <img src="imagens/site02.png" alt="Página de Login">
+                <h4>Login Page (HTML, CSS, JavaScript)</h4>
+                <p data-en="Responsive login page with user validation and dynamic exit functionality using JavaScript."
+                   data-pt="Página de login responsiva com validação de usuário e funcionalidade de saída dinâmica com JavaScript.">
+                    Página de login responsiva com validação de usuário e funcionalidade de saída dinâmica com JavaScript.
+                </p>
+                <a href="site02.html" target="_blank" data-en="Live Demo" data-pt="Ver Projeto Online">Ver Projeto Online</a>
+                <a href="https://github.com/igoramericano/portifolio" target="_blank" data-en="View Code (GitHub)" data-pt="Ver Código (GitHub)">Ver Código (GitHub)</a>
+            </div>
+
+            <div class="projeto-item">
+                <img src="imagens/site03.png" alt="Bitcoin Trader Webpage">
+                <h4>Bitcoin Trader Webpage (Back-end Foco)</h4>
+                <p data-en="Back-end focused project implementing basic API integration for charts and message sending simulation."
+                   data-pt="Projeto focado em Back-end com implementação básica de API para gráficos e simulação de envio de mensagens.">
+                    Projeto focado em Back-end com implementação básica de API para gráficos e simulação de envio de mensagens.
+                </p>
+                <a href="https://bit.ly/45Kya2S" target="_blank" data-en="Live Demo" data-pt="Ver Projeto Online">Ver Projeto Online</a>
+                <a href="#" target="_blank" data-en="View Code (GitHub)" data-pt="Ver Código (GitHub)">Ver Código (GitHub)</a>
+            </div>
+
+        </section>
+
+        <!-- CONTATO -->
         <section id="contato">
             <h3 data-en="Get in Touch" data-pt="Entre em Contato">Entre em Contato</h3>
-            <p data-en="I am available for new projects and collaborations. Let's talk!" data-pt="Estou disponível para novos projetos e colaborações. Vamos conversar!">Estou disponível para novos projetos e colaborações. Vamos conversar!</p>
+            <p data-en="I am available for new projects and collaborations. Let's talk!"
+               data-pt="Estou disponível para novos projetos e colaborações. Vamos conversar!">
+                Estou disponível para novos projetos e colaborações. Vamos conversar!
+            </p>
+
             <div class="contato-links">
                 <a href="https://github.com/igoramericano?tab=repositories" target="_blank">GitHub</a>
                 <a href="https://instagram.com/igoramericano" target="_blank">Instagram</a>
                 <a href="https://wa.me/5571981628334?text=Olá,%20vi%20seu%20contato%20e%20gostaria%20de%20saber%20mais!" target="_blank">Whatsapp</a>
             </div>
         </section>
+
     </main>
+
+    <!-- SCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
             const hamburguerIcon = document.querySelector('.hamburguer-icon');
             const mobileMenu = document.querySelector('.mobile-menu');
             const langBtnDesktop = document.getElementById('language-btn');
             const langBtnMobile = document.getElementById('language-btn-mobile');
 
+            /* Menu Mobile */
             if (hamburguerIcon && mobileMenu) {
                 hamburguerIcon.addEventListener('click', () => {
                     mobileMenu.classList.toggle('active');
                 });
+
                 mobileMenu.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
                         mobileMenu.classList.remove('active');
@@ -252,14 +334,18 @@
                 });
             }
 
+            /* Matrix Canvas */
             const canvas = document.getElementById('matrix-canvas');
+
             if (canvas) {
                 const ctx = canvas.getContext('2d');
                 const heroSection = document.getElementById('hero');
+
                 const resizeCanvas = () => {
                     canvas.width = window.innerWidth;
                     canvas.height = heroSection.offsetHeight;
                 };
+
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
 
@@ -267,75 +353,88 @@
                 const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 const nums = '0123456789';
                 const alphabet = katakana + latin + nums;
+
                 const fontSize = 16;
                 const columns = Math.floor(canvas.width / fontSize);
-                const drops = [];
-                for (let i = 0; i < columns; i++) {
-                    drops.push(1);
-                }
+                const drops = Array(columns).fill(1);
 
                 function drawMatrix() {
                     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
                     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--cor-matrix');
                     ctx.font = fontSize + 'px monospace';
 
                     for (let i = 0; i < drops.length; i++) {
                         const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
                         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
                         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                             drops[i] = 0;
                         }
                         drops[i]++;
                     }
                 }
+
                 setInterval(drawMatrix, 33);
             }
 
+            /* Tradução */
             let currentLang = document.documentElement.lang;
 
             function updateButtonText(lang) {
-                const desktopText = lang === 'en' ? langBtnDesktop.getAttribute('data-en-text') : langBtnDesktop.getAttribute('data-pt-text');
-                const mobileText = lang === 'en' ? langBtnMobile.getAttribute('data-en-text') : langBtnMobile.getAttribute('data-pt-text');
+                const desktopText = lang === 'en'
+                    ? langBtnDesktop.getAttribute('data-en-text')
+                    : langBtnDesktop.getAttribute('data-pt-text');
+                const mobileText = lang === 'en'
+                    ? langBtnMobile.getAttribute('data-en-text')
+                    : langBtnMobile.getAttribute('data-pt-text');
+
                 if (langBtnDesktop) langBtnDesktop.textContent = desktopText;
                 if (langBtnMobile) langBtnMobile.textContent = mobileText;
             }
 
             function translatePage(lang) {
                 const elements = document.querySelectorAll('[data-en], [data-pt]');
+
                 elements.forEach(el => {
                     const translation = el.getAttribute(`data-${lang}`);
-                    if (translation) {
-                        el.textContent = translation;
-                    }
+                    if (translation) el.textContent = translation;
                 });
-                document.title = (lang === 'en') ? 'Igor Americano | Portfolio' : 'Igor Americano | Portfólio';
+
+                document.title = lang === 'en'
+                    ? 'Igor Americano | Web Developer'
+                    : 'Igor Americano | Desenvolvedor Web';
+
                 document.documentElement.lang = lang;
+
                 updateButtonText(lang);
             }
 
             if (langBtnDesktop) {
                 langBtnDesktop.addEventListener('click', () => {
-                    const newLang = currentLang === 'pt' ? 'en' : 'pt';
-                    currentLang = newLang;
-                    translatePage(newLang);
+                    currentLang = currentLang === 'pt' ? 'en' : 'pt';
+                    translatePage(currentLang);
                 });
             }
 
             if (langBtnMobile) {
                 langBtnMobile.addEventListener('click', () => {
-                    const newLang = currentLang === 'pt' ? 'en' : 'pt';
-                    currentLang = newLang;
-                    translatePage(newLang);
+                    currentLang = currentLang === 'pt' ? 'en' : 'pt';
+                    translatePage(currentLang);
                     mobileMenu.classList.remove('active');
                 });
             }
-            
+
             translatePage(currentLang);
         });
     </script>
+
     <footer>
-        <p data-en="© 2025 Igor Americano Fernandes. All rights reserved." data-pt="&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.">&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.</p>
+        <p data-en="© 2025 Igor Americano Fernandes. All rights reserved."
+           data-pt="&copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.">
+            &copy; 2025 Igor Americano Fernandes. Todos os direitos reservados.
+        </p>
     </footer>
 </body>
 </html>
